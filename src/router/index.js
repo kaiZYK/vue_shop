@@ -30,6 +30,12 @@ router.beforeEach((to, from, next) => {
   if (to.path == "/login") {
     next();
   } else {
+    // 判断是否有token值
+    if (window.sessionStorage.getItem("token") != "") {
+      next();
+    } else {
+      next("/login");
+    }
   }
 });
 

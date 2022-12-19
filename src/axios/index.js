@@ -6,6 +6,8 @@ let http = axios.create({
 // 请求拦截器
 http.interceptors.request.use(
   (config) => {
+    // 设置请求头
+    config.headers[token] = window.sessionStorage.getItem("token");
     return config;
   },
   (error) => {

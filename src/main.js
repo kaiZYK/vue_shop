@@ -3,9 +3,20 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+// 引入全局css样式
+import "@/assets/css/global.css";
+
+// 引入iconFont字体图标
+import "@/assets/fonts/iconfont.css";
+
 // 引入axios
-import axios from "@/axios/axios.js";
-Vue.use(axios);
+import axios from "@/axios/index.js";
+Vue.prototype.$http = axios;
+
+// 引入element UI
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
