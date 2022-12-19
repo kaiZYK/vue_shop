@@ -7,7 +7,7 @@ let http = axios.create({
 http.interceptors.request.use(
   (config) => {
     // 设置请求头
-    config.headers[token] = window.sessionStorage.getItem("token");
+    config.headers["Authorization"] = window.sessionStorage.getItem("token");
     return config;
   },
   (error) => {

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <router-view />
+    <!-- 路由出口 -->
+    <router-view></router-view>
   </div>
 </template>
 

@@ -1,10 +1,10 @@
 <template>
-  <div><h3>Welcome 电商后台管理系统</h3></div>
+  <div>roles</div>
 </template>
 
 <script>
 export default {
-  name: "Welcome",
+  name: "Roles",
   data() {
     return {};
   },
