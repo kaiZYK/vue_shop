@@ -29,12 +29,12 @@
               :key="item1.id"
             >
               <template slot="title">
-                <i :class="menuIcon[item1.authName]"></i>
+                <i :class="menuIcon[item1.path]"></i>
                 <span class="menuTitle">{{ item1.authName }}</span>
               </template>
               <!-- 二级菜单 -->
               <el-menu-item
-                :index="item2.id + ''"
+                :index="item2.path + ''"
                 v-for="(item2, index2) in item1.children"
                 :key="item2.id"
                 :route="item2.path"
@@ -66,11 +66,11 @@ export default {
       menuDataList: [],
       // 一级菜单的icon
       menuIcon: {
-        用户管理: "iconfont icon-users",
-        权限管理: "iconfont icon-tijikongjian",
-        商品管理: "iconfont icon-shangpin",
-        订单管理: "iconfont icon-danju",
-        数据统计: "iconfont icon-baobiao",
+        users: "iconfont icon-users",
+        rights: "iconfont icon-tijikongjian",
+        goods: "iconfont icon-shangpin",
+        orders: "iconfont icon-danju",
+        reports: "iconfont icon-baobiao",
       },
 
       // 折叠布尔值
@@ -162,6 +162,10 @@ export default {
         margin-left: 10px;
       }
     }
+  }
+  /* 主体部分 */
+  .el-main {
+    background-color: #eaedf1;
   }
 }
 </style>
