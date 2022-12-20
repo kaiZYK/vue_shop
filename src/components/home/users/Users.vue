@@ -98,7 +98,12 @@
               placement="top"
               :enterable="false"
             >
-              <el-button type="warning" size="mini" icon="el-icon-share">
+              <el-button
+                type="warning"
+                size="mini"
+                icon="el-icon-share"
+                @click="showSetRoleVisible(scope.row)"
+              >
               </el-button>
             </el-tooltip>
           </template>
@@ -205,6 +210,39 @@
         <el-button type="primary" @click="editUser()">确 定</el-button>
       </span>
     </el-dialog>
+
+    <!-- 分配角色对话框 -->
+    <el-dialog
+      title="添加用户"
+      :visible.sync="setRoleVisible"
+      width="50%"
+      @close="resetSetRoleForm()"
+    >
+      <el-form :model="setRoleForm" ref="setRoleRef" label-width="120px">
+        <el-form-item label="当前的用户：">
+          <el-input v-model="setRoleForm.username" clearable disabled>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="当前的角色：">
+          <el-input v-model="userRoleName" clearable disabled> </el-input>
+        </el-form-item>
+        <el-form-item label="要分配的角色：">
+          <el-select v-model="activeRoleID" placeholder="请选择要分配的角色">
+            <el-option
+              v-for="item in roleDataList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setRoleVisible = false">取 消</el-button>
+        <el-button type="primary" @click="setRole()">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -302,6 +340,24 @@ export default {
 
       // 编辑用户当前的id
       editUserID: null,
+
+      // 分配角色对话框显示与隐藏
+      setRoleVisible: false,
+
+      // 分配角色表单数据
+      setRoleForm: {},
+
+      // 当前用户的角色名称
+      userRoleName: "",
+
+      // 分配角色当前的id
+      setRoleUserID: null,
+
+      // 角色数据列表
+      roleDataList: [],
+
+      // 选中的角色的id
+      activeRoleID: "",
     };
   },
   components: {},
@@ -411,7 +467,7 @@ export default {
       });
     },
 
-    // 关闭添加用户对话框后 重置添加用户表单内容
+    // 关闭编辑用户对话框后 重置添加用户表单内容
     resetEditUserForm() {
       this.$refs.editUseRef.resetFields();
     },
@@ -450,6 +506,67 @@ export default {
       } else {
         this.$message.error("编辑用户状态失败");
       }
+    },
+
+    // 显示分配角色对话框
+    async showSetRoleVisible(row) {
+      // 保存分配角色当前的id
+      this.setRoleUserID = row.id;
+
+      // 设置当前用户的角色名称
+      this.userRoleName = row.role_name;
+
+      // 发起获取当前用户的请求
+      let { data: res } = await this.$http.get(`/users/${row.id}}`);
+      if (res.meta.status == 200) {
+        // 设置分配角色表单数据
+        this.setRoleForm = res.data;
+        console.log(this.setRoleForm);
+      } else {
+        this.$message.error("获取当前用户数据失败");
+      }
+
+      // 发起获取角色数据列表的请求
+      let { data: res__ } = await this.$http.get(`/roles`);
+      console.log(res__);
+      if (res__.meta.status == 200) {
+        // 设置角色数据列表
+        this.roleDataList = res__.data;
+      } else {
+        this.$message.error("获取角色数据列表数据失败");
+      }
+
+      // 分配角色对话框显示
+      this.setRoleVisible = true;
+    },
+
+    // 分配角色功能
+    async setRole() {
+      // 发送分配角色请求
+      let { data: res } = await this.$http.put(
+        `/users/${this.setRoleUserID}/role`,
+        {
+          rid: this.activeRoleID,
+        }
+      );
+      if (res.meta.status == 200) {
+        // 获取用户列表数据
+        this.getUsersDataList();
+        // 分配角色对话框隐藏
+        this.setRoleVisible = false;
+        this.$message.success("分配角色成功");
+      } else {
+        this.$message.error("分配角色失败");
+      }
+    },
+
+    // 关闭分配角色对话框后 重置分配角色表单内容
+    resetSetRoleForm() {
+      this.$refs.setRoleRef.resetFields();
+      // 当前用户的角色名称为空
+      this.userRoleName = "";
+      // 选中的角色的id为空
+      this.activeRoleID = "";
     },
   },
   computed: {},
