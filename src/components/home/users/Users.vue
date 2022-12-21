@@ -101,7 +101,7 @@
               <el-button
                 type="warning"
                 size="mini"
-                icon="el-icon-share"
+                icon="el-icon-setting"
                 @click="showSetRoleVisible(scope.row)"
               >
               </el-button>
@@ -172,7 +172,7 @@
 
     <!-- 编辑用户对话框 -->
     <el-dialog
-      title="添加用户"
+      title="编辑用户"
       :visible.sync="editUserVisible"
       width="50%"
       @close="resetEditUserForm()"
