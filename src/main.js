@@ -18,6 +18,10 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
 
+// 引入vue-table-with-tree-grid表格框架
+import TreeTable from "vue-table-with-tree-grid";
+Vue.component("tree-table", TreeTable);
+
 Vue.config.productionTip = false;
 
 new Vue({
