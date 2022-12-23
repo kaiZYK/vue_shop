@@ -487,7 +487,7 @@ export default {
             this.getUsersDataList();
             this.$message.success("删除用户成功");
           } else {
-            this.$message.info("删除用户失败");
+            this.$message.error("删除用户失败");
           }
         })
         .catch(() => {
