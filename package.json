@@ -18,8 +18,15 @@
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "axios": "^1.2.1",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "echarts": "^5.4.1",
+    "element-ui": "^2.15.12",
     "less": "^4.0.0",
     "less-loader": "^8.0.0",
+    "lodash": "^4.17.21",
+    "nprogress": "^0.2.0",
+    "vue-quill-editor": "^3.0.6",
+    "vue-table-with-tree-grid": "^0.2.4",
     "vue-template-compiler": "^2.6.14"
   }
 }
