@@ -58,7 +58,12 @@
               placement="top"
               :enterable="false"
             >
-              <el-button type="primary" size="mini" icon="el-icon-edit">
+              <el-button
+                type="primary"
+                size="mini"
+                icon="el-icon-edit"
+                @click="editShop(scope.row.goods_id)"
+              >
               </el-button>
             </el-tooltip>
 
@@ -158,6 +163,11 @@ export default {
     // 添加商品功能
     addShop() {
       this.$router.push("/add");
+    },
+
+    // 编辑商品功能
+    editShop(id) {
+      this.$router.push({ query: { goods_id: id }, path: "/edit" });
     },
 
     // 删除商品功能

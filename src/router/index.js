@@ -53,6 +53,11 @@ const routes = [
         component: () => import("@/components/home/goods/Add.vue"),
       },
       {
+        path: "/edit",
+        name: "Edit",
+        component: () => import("@/components/home/goods/Edit.vue"),
+      },
+      {
         path: "/params",
         name: "Params",
         component: () => import("@/components/home/goods/Params.vue"),
