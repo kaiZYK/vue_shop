@@ -22,6 +22,14 @@ Vue.use(ElementUI);
 import TreeTable from "vue-table-with-tree-grid";
 Vue.component("tree-table", TreeTable);
 
+// 引入富文本编辑器
+import VueQuillEditor from "vue-quill-editor";
+// 引入富文本编辑器的样式
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
+Vue.use(VueQuillEditor);
+
 Vue.config.productionTip = false;
 
 new Vue({

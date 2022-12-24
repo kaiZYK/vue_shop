@@ -329,10 +329,12 @@ export default {
     checkoutCateIdChange() {
       // console.log(this.checkoutCateId);
       // 判断选中的id是否不为空 发送请求
-      if (this.checkoutCateId.length != 0) {
+      if (this.checkoutCateId.length == 3) {
         // 获取动态参数或静态属性数据
         this.getManyOnlyData();
       } else {
+        // 选中的不是三级分类删除数组id
+        this.checkoutCateId = [];
         // 重置动态参数和静态属性数据
         this.manyData = [];
         this.onlyData = [];
@@ -386,7 +388,7 @@ export default {
       // console.log(this.tabsActiveName);
 
       // 判断选中的id是否不为空 发送请求
-      if (this.checkoutCateId.length != 0) {
+      if (this.checkoutCateId.length == 3) {
         // 获取动态参数或静态属性数据
         this.getManyOnlyData();
       } else {
@@ -622,4 +624,6 @@ export default {
   width: 90px;
   margin-left: 10px;
 }
+
+
 </style>

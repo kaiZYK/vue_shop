@@ -35,7 +35,7 @@
       <!-- 表格部分 -->
       <el-table :data="shopDataList" border stripe style="width: 100%">
         <el-table-column type="index" label="序号"> </el-table-column>
-        <el-table-column prop="goods_name" label="商品名称" width="700px">
+        <el-table-column prop="goods_name" label="商品名称" width="600px">
         </el-table-column>
         <el-table-column prop="goods_price" label="价格(元)"> </el-table-column>
         <el-table-column prop="goods_number" label="商品数量">

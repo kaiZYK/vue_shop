@@ -23,6 +23,7 @@
     "less": "^4.0.0",
     "less-loader": "^8.0.0",
     "lodash": "^4.17.21",
+    "vue-quill-editor": "^3.0.6",
     "vue-table-with-tree-grid": "^0.2.4",
     "vue-template-compiler": "^2.6.14"
   }
